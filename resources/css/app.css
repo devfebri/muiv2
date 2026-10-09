@@ -1,0 +1,297 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../views';
+@source '../js';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: var(--font-jakarta), 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-display: var(--font-playfair), 'Playfair Display', Georgia, serif;
+    --font-arabic: var(--font-amiri), 'Amiri', 'Traditional Arabic', serif;
+
+    --color-brand-50: #effaf4;
+    --color-brand-100: #d8f2e3;
+    --color-brand-200: #b3e4ca;
+    --color-brand-300: #7fcfaa;
+    --color-brand-400: #48b384;
+    --color-brand-500: #259868;
+    --color-brand-600: #177a53;
+    --color-brand-700: #126245;
+    --color-brand-800: #0f4e38;
+    --color-brand-900: #0c402f;
+    --color-brand-950: #06241a;
+
+    --color-gold-50: #fdf9ec;
+    --color-gold-100: #f8eecb;
+    --color-gold-200: #f0dc93;
+    --color-gold-300: #e7c55a;
+    --color-gold-400: #dfb035;
+    --color-gold-500: #c9951f;
+    --color-gold-600: #a97418;
+    --color-gold-700: #875517;
+    --color-gold-800: #70441a;
+    --color-gold-900: #5f3919;
+
+    --color-sand-50: #fcfaf5;
+    --color-sand-100: #f6f1e6;
+    --color-sand-200: #ece3cf;
+
+    --color-ink-900: #10231b;
+
+    --shadow-soft: 0 1px 2px rgb(16 35 27 / 0.04), 0 8px 24px -12px rgb(16 35 27 / 0.12);
+    --shadow-lift: 0 2px 4px rgb(16 35 27 / 0.04), 0 24px 48px -20px rgb(16 35 27 / 0.28);
+    --shadow-glow: 0 10px 40px -10px rgb(201 149 31 / 0.55);
+
+    --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    --animate-float: float 6s ease-in-out infinite;
+    --animate-shimmer: shimmer 2.4s linear infinite;
+    --animate-spin-slow: spin 40s linear infinite;
+    --animate-progress: progress linear forwards;
+
+    @keyframes fade-up {
+        from { opacity: 0; transform: translateY(18px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+    @keyframes shimmer {
+        from { background-position: -200% 0; }
+        to { background-position: 200% 0; }
+    }
+    @keyframes progress {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+    }
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        -webkit-tap-highlight-color: transparent;
+    }
+    body {
+        @apply bg-sand-50 font-sans text-[15px] text-stone-700 antialiased;
+        text-rendering: optimizeLegibility;
+    }
+    h1, h2, h3, h4 {
+        @apply text-ink-900;
+    }
+    ::selection {
+        @apply bg-gold-200 text-brand-950;
+    }
+    [x-cloak] {
+        display: none !important;
+    }
+    input[type='search']::-webkit-search-decoration,
+    input[type='search']::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+        appearance: none;
+    }
+    :focus-visible {
+        @apply outline-2 outline-offset-2 outline-gold-500;
+    }
+}
+
+/* ---------- Pola geometri islami ---------- */
+@utility pattern-islamic {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.09' stroke-width='1'%3E%3Crect x='22' y='22' width='44' height='44'/%3E%3Crect x='22' y='22' width='44' height='44' transform='rotate(45 44 44)'/%3E%3Ccircle cx='44' cy='44' r='10'/%3E%3Cpath d='M0 0l22 22M88 0L66 22M0 88l22-22M88 88L66 66M44 0v12M44 76v12M0 44h12M76 44h12'/%3E%3C/g%3E%3C/svg%3E");
+}
+@utility pattern-islamic-dark {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%23126245' stroke-opacity='0.08' stroke-width='1'%3E%3Crect x='22' y='22' width='44' height='44'/%3E%3Crect x='22' y='22' width='44' height='44' transform='rotate(45 44 44)'/%3E%3Ccircle cx='44' cy='44' r='10'/%3E%3Cpath d='M0 0l22 22M88 0L66 22M0 88l22-22M88 88L66 66M44 0v12M44 76v12M0 44h12M76 44h12'/%3E%3C/g%3E%3C/svg%3E");
+}
+@utility pattern-gold {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%23dfb035' stroke-opacity='0.16' stroke-width='1'%3E%3Crect x='22' y='22' width='44' height='44'/%3E%3Crect x='22' y='22' width='44' height='44' transform='rotate(45 44 44)'/%3E%3Ccircle cx='44' cy='44' r='10'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+@utility container-x {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+@utility text-balance {
+    text-wrap: balance;
+}
+
+@utility scrollbar-none {
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+}
+
+@utility scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(18 98 69 / 0.25) transparent;
+}
+
+@utility bg-gradient-brand {
+    background-image: radial-gradient(120% 120% at 0% 0%, #177a53 0%, #0c402f 45%, #06241a 100%);
+}
+
+@utility text-gradient-gold {
+    background-image: linear-gradient(100deg, #f0dc93 0%, #dfb035 40%, #c9951f 70%, #f0dc93 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* ---------- Komponen ---------- */
+@layer components {
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition duration-200 select-none disabled:cursor-not-allowed disabled:opacity-60;
+    }
+    .btn-sm { @apply rounded-lg px-3.5 py-2 text-[13px]; }
+    .btn-lg { @apply rounded-2xl px-7 py-3.5 text-[15px]; }
+    .btn-primary {
+        @apply bg-brand-700 text-white shadow-sm shadow-brand-900/20 hover:bg-brand-800 active:scale-[.98];
+    }
+    .btn-gold {
+        @apply bg-gradient-to-br from-gold-300 via-gold-400 to-gold-500 text-brand-950 shadow-[var(--shadow-glow)] hover:brightness-105 active:scale-[.98];
+    }
+    .btn-outline {
+        @apply border border-stone-300 bg-white text-stone-700 hover:border-brand-600 hover:text-brand-700;
+    }
+    .btn-ghost {
+        @apply text-stone-600 hover:bg-stone-100 hover:text-brand-800;
+    }
+    .btn-glass {
+        @apply border border-white/25 bg-white/10 text-white backdrop-blur-md hover:bg-white/20;
+    }
+    .btn-danger {
+        @apply bg-red-600 text-white hover:bg-red-700;
+    }
+
+    .card {
+        @apply rounded-2xl border border-stone-200/70 bg-white shadow-[var(--shadow-soft)];
+    }
+    .card-hover {
+        @apply transition duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-[var(--shadow-lift)];
+    }
+
+    .label {
+        @apply mb-1.5 block text-[13px] font-semibold text-stone-700;
+    }
+    .input {
+        @apply block w-full rounded-xl border border-stone-300 bg-white px-3.5 py-2.5 text-sm text-stone-800 shadow-xs transition placeholder:text-stone-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/15 focus:outline-none disabled:bg-stone-100;
+    }
+    select.input {
+        @apply appearance-none bg-[length:16px] bg-[right_0.75rem_center] bg-no-repeat pr-10;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2378716c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    }
+    .input-error {
+        @apply border-red-400 focus:border-red-500 focus:ring-red-500/15;
+    }
+    .field-error {
+        @apply mt-1.5 flex items-center gap-1 text-xs font-medium text-red-600;
+    }
+    .checkbox {
+        @apply size-4 rounded border-stone-300 text-brand-600 accent-brand-600 focus:ring-brand-500;
+    }
+
+    .badge {
+        @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-semibold tracking-wide whitespace-nowrap;
+    }
+    .badge-green { @apply bg-brand-50 text-brand-700 ring-1 ring-brand-600/15; }
+    .badge-gold { @apply bg-gold-50 text-gold-700 ring-1 ring-gold-600/20; }
+    .badge-gray { @apply bg-stone-100 text-stone-600 ring-1 ring-stone-500/15; }
+    .badge-red { @apply bg-red-50 text-red-700 ring-1 ring-red-600/15; }
+    .badge-blue { @apply bg-sky-50 text-sky-700 ring-1 ring-sky-600/15; }
+    .badge-purple { @apply bg-violet-50 text-violet-700 ring-1 ring-violet-600/15; }
+
+    .eyebrow {
+        @apply inline-flex items-center gap-2 text-xs font-bold tracking-[.2em] text-gold-600 uppercase;
+    }
+    .eyebrow::before {
+        content: '';
+        @apply h-px w-8 bg-gradient-to-r from-transparent to-gold-500;
+    }
+    .section-title {
+        @apply font-display text-3xl leading-tight font-semibold text-balance text-ink-900 sm:text-4xl;
+    }
+
+    .nav-link {
+        @apply relative inline-flex items-center gap-1 rounded-lg px-3 py-2 text-[14px] font-semibold whitespace-nowrap text-stone-700 transition hover:text-brand-700;
+    }
+    .nav-link.active {
+        @apply text-brand-700;
+    }
+    .nav-link.active::after {
+        content: '';
+        @apply absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-gold-500;
+    }
+
+    .chip {
+        @apply inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-white px-3.5 py-1.5 text-[13px] font-semibold whitespace-nowrap text-stone-600 transition hover:border-brand-400 hover:text-brand-700;
+    }
+    .chip.active {
+        @apply border-brand-700 bg-brand-700 text-white shadow-sm shadow-brand-900/20 hover:text-white;
+    }
+
+    .table-clean {
+        @apply w-full text-left text-sm;
+    }
+    .table-clean thead th {
+        @apply border-b border-stone-200 bg-stone-50/80 px-4 py-3 text-[11px] font-bold tracking-wider whitespace-nowrap text-stone-500 uppercase;
+    }
+    .table-clean tbody td {
+        @apply border-b border-stone-100 px-4 py-3 align-top;
+    }
+    .table-clean tbody tr {
+        @apply transition hover:bg-brand-50/40;
+    }
+
+    /* Tipografi konten artikel */
+    .prose-mui {
+        @apply text-[16.5px] leading-[1.85] text-stone-700;
+    }
+    .prose-mui > * + * { @apply mt-5; }
+    .prose-mui h2 { @apply mt-10 font-display text-2xl font-semibold text-ink-900; }
+    .prose-mui h3 { @apply mt-8 text-xl font-bold text-ink-900; }
+    .prose-mui h4 { @apply mt-6 text-lg font-bold text-ink-900; }
+    .prose-mui a { @apply font-medium text-brand-700 underline decoration-gold-400 decoration-2 underline-offset-4 hover:text-brand-900; }
+    .prose-mui strong { @apply font-bold text-ink-900; }
+    .prose-mui ul { @apply list-disc space-y-2 pl-6 marker:text-gold-500; }
+    .prose-mui ol { @apply list-decimal space-y-2 pl-6 marker:font-bold marker:text-brand-600; }
+    .prose-mui blockquote {
+        @apply relative rounded-r-2xl border-l-4 border-gold-400 bg-gradient-to-r from-gold-50 to-transparent py-4 pr-4 pl-6 font-display text-lg text-stone-800 italic;
+    }
+    .prose-mui img { @apply h-auto max-w-full rounded-2xl shadow-[var(--shadow-soft)]; }
+    .prose-mui iframe { @apply aspect-video h-auto w-full rounded-2xl; }
+    .prose-mui table { @apply w-full border-collapse text-sm; }
+    .prose-mui th, .prose-mui td { @apply border border-stone-200 px-3 py-2; }
+    .prose-mui th { @apply bg-stone-50; }
+    .prose-mui hr { @apply my-10 border-stone-200; }
+    .prose-mui .ql-align-center { @apply text-center; }
+    .prose-mui .ql-align-right { @apply text-right; }
+    .prose-mui .ql-align-justify { @apply text-justify; }
+    .prose-mui [dir='rtl'], .prose-mui .arabic {
+        @apply font-arabic text-2xl leading-[2.2] text-brand-900;
+    }
+
+    .arabic {
+        @apply font-arabic;
+        direction: rtl;
+    }
+
+    .skeleton {
+        @apply rounded-lg bg-[linear-gradient(90deg,#f1ede4_0%,#faf7f1_50%,#f1ede4_100%)] bg-[length:200%_100%] animate-shimmer;
+    }
+
+    .js .reveal {
+        @apply translate-y-4 opacity-0 transition duration-700 ease-out;
+    }
+    .js .reveal.is-visible {
+        @apply translate-y-0 opacity-100;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
